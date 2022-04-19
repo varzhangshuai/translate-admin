@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    我是首页
+    我是用户管理3
   </div>
 </template>
 
