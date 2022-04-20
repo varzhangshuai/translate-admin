@@ -10,7 +10,7 @@ const route = [
       {
         path: 'dashboard',
         component: createNameComponent(() => import('@/views/Index/index.vue')),
-        meta: { title: '首页', icon: 'el-icon-menu' }
+        meta: { title: '首页', icon: 'el-icon-menu', show: true }
       }
     ]
   },
@@ -22,12 +22,12 @@ const route = [
       {
         path: 'MaintainWorker',
         component: createNameComponent(() => import('@/views/Worker/MaintainWorker.vue')),
-        meta: { title: '维护用户管理' }
+        meta: { title: '维护用户管理', show: true }
       },
       {
         path: 'Audit',
         component: createNameComponent(() => import('@/views/Worker/Audit.vue')),
-        meta: { title: '审核用户管理' }
+        meta: { title: '审核用户管理', show: true }
       },
       {
         path: 'SystemAdminer',
@@ -53,17 +53,17 @@ const route = [
       },
       {
         path: 'Area',
-        component: createNameComponent(() => import('@/views/User/Audit.vue')),
-        meta: { title: '用户地区分布' }
+        component: createNameComponent(() => import('@/views/User/Area.vue')),
+        meta: { title: '用户地区分布', show: true }
       },
       {
         path: 'Type',
-        component: createNameComponent(() => import('@/views/User/SystemAdminer.vue')),
-        meta: { title: '用户类型分布' }
+        component: createNameComponent(() => import('@/views/User/Type.vue')),
+        meta: { title: '用户类型分布', show: true }
       },
       {
         path: 'Delete',
-        component: createNameComponent(() => import('@/views/User/Role.vue')),
+        component: createNameComponent(() => import('@/views/User/Delete.vue')),
         meta: { title: '删除用户' }
       }
     ]
@@ -150,7 +150,7 @@ const route = [
       {
         path: 'Add',
         component: createNameComponent(() => import('@/views/Examine/Add.vue')),
-        meta: { title: '录入词条审核' }
+        meta: { title: '录入词条审核', show: true }
       },
       {
         path: 'Import',
@@ -283,5 +283,8 @@ const route = [
     ]
   },
 ]
-
-export default route
+const asyncRoute = route.reduce((p, c) => {
+  c.children = c.children.filter(v => v.meta.show);
+  return c.children.length > 0 ? p.concat(c) : p;
+}, [])
+export default asyncRoute
