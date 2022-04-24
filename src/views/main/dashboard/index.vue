@@ -1,13 +1,18 @@
 <template>
   <div class="wrap">
     我是首页
+    <Pdf src="https://www.gjtool.cn/pdfh5/git.pdf"></Pdf>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-export default defineComponent({
+import Pdf from '@/components/pdf/index.vue'
 
+export default defineComponent({
+  components: {
+    Pdf
+  },
 })
 </script>
 
