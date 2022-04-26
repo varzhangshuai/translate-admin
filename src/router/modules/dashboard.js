@@ -25,6 +25,11 @@ const route = [
         meta: { title: '维护用户管理', show: true }
       },
       {
+        path: 'UserEdit',
+        component: createNameComponent(() => import('@/views/Worker/UserEdit.vue')),
+        meta: { title: '新增角色', show: true }
+      },
+      {
         path: 'Audit',
         component: createNameComponent(() => import('@/views/Worker/Audit.vue')),
         meta: { title: '审核用户管理', show: true }
@@ -283,8 +288,9 @@ const route = [
     ]
   },
 ]
-const asyncRoute = route.reduce((p, c) => {
-  c.children = c.children.filter(v => v.meta.show);
-  return c.children.length > 0 ? p.concat(c) : p;
-}, [])
-export default asyncRoute
+// const asyncRoute = route.reduce((p, c) => {
+//   c.children = c.children.filter(v => v.meta.show);
+//   return c.children.length > 0 ? p.concat(c) : p;
+// }, [])
+// export default asyncRoute
+export default route

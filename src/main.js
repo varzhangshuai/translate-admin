@@ -8,6 +8,7 @@ import './assets/style/common.scss' // 公共css
 import App from './App.vue'
 import store from './store'
 import router from './router'
+
 if (import.meta.env.MODE !== 'development') { // 非开发环境调用百度统计
   baidu()
 }
@@ -16,4 +17,5 @@ app.use(ElementPlus, { size: store.state.app.elementSize })
 app.use(store)
 app.use(router)
 // app.config.performance = true
+
 app.mount('#app')
