@@ -142,7 +142,7 @@ const route = [
       },
       {
         path: 'Pass',
-        component: createNameComponent(() => import('@/views/Entry/Languages.vue')),
+        component: createNameComponent(() => import('@/views/Entry/Pass.vue')),
         meta: { title: '审核未通过' }
       }
     ]

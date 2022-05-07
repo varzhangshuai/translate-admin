@@ -1,0 +1,219 @@
+[
+    {
+        "title": "首页",
+        "path": "/dashboard"
+    },
+    {
+        "title": "用户管理",
+        "children": [
+            {
+                "title": "维护用户管理",
+                "path": "/Worker/MaintainWorker"
+            },
+            {
+                "title": "新增角色",
+                "path": "/Worker/UserEdit"
+            },
+            {
+                "title": "审核用户管理",
+                "path": "/Worker/Audit"
+            },
+            {
+                "title": "系统管理员管理",
+                "path": "/Worker/SystemAdminer"
+            },
+            {
+                "title": "角色管理",
+                "path": "/Worker/Role"
+            }
+        ]
+    },
+    {
+        "title": "终端用户管理",
+        "children": [
+            {
+                "title": "查询用户",
+                "path": "/User/Search"
+            },
+            {
+                "title": "用户地区分布",
+                "path": "/User/Area"
+            },
+            {
+                "title": "用户类型分布",
+                "path": "/User/Type"
+            },
+            {
+                "title": "删除用户",
+                "path": "/User/Delete"
+            }
+        ]
+    },
+    {
+        "title": "字典管理",
+        "children": [
+            {
+                "title": "字典总览",
+                "path": "/Dictionaries/Search"
+            },
+            {
+                "title": "添加字典",
+                "path": "/Dictionaries/Add"
+            },
+            {
+                "title": "修改字典",
+                "path": "/Dictionaries/Edit"
+            },
+            {
+                "title": "删除字典",
+                "path": "/Dictionaries/Delete"
+            },
+            {
+                "title": "语种管理",
+                "path": "/Dictionaries/Languages"
+            }
+        ]
+    },
+    {
+        "title": "字典管理",
+        "children": [
+            {
+                "title": "查询词条",
+                "path": "/Entry/Search"
+            },
+            {
+                "title": "增加词条",
+                "path": "/Entry/Add"
+            },
+            {
+                "title": "导入词条",
+                "path": "/Entry/Import"
+            },
+            {
+                "title": "修改词条",
+                "path": "/Entry/Edit"
+            },
+            {
+                "title": "编辑语音",
+                "path": "/Entry/Voice"
+            },
+            {
+                "title": "删除词条",
+                "path": "/Entry/Delete"
+            },
+            {
+                "title": "审核未通过",
+                "path": "/Entry/Pass"
+            }
+        ]
+    },
+    {
+        "title": "审核管理",
+        "children": [
+            {
+                "title": "录入词条审核",
+                "path": "/Examine/Add"
+            },
+            {
+                "title": "导入词条审核",
+                "path": "/Examine/Import"
+            },
+            {
+                "title": "用户荐词审核",
+                "path": "/Examine/UserSuggestions"
+            },
+            {
+                "title": "用户意见反馈审核",
+                "path": "/Examine/UserOptions"
+            }
+        ]
+    },
+    {
+        "title": "用户荐词管理",
+        "children": [
+            {
+                "title": "荐词清单",
+                "path": "/UserSuggestions/List"
+            },
+            {
+                "title": "荐词审核",
+                "path": "/UserSuggestions/Audit"
+            },
+            {
+                "title": "荐词发布",
+                "path": "/UserSuggestions/Publish"
+            },
+            {
+                "title": "修改荐词",
+                "path": "/UserSuggestions/Edit"
+            },
+            {
+                "title": "荐词删除",
+                "path": "/UserSuggestions/Delete"
+            }
+        ]
+    },
+    {
+        "title": "字典原文管理",
+        "children": [
+            {
+                "title": "查看原文",
+                "path": "/DictionariesText/View"
+            },
+            {
+                "title": "原文上传",
+                "path": "/DictionariesText/Update"
+            },
+            {
+                "title": "原文删除",
+                "path": "/DictionariesText/Delete"
+            }
+        ]
+    },
+    {
+        "title": "发布管理",
+        "children": [
+            {
+                "title": "发布总览",
+                "path": "/Publish/Total"
+            },
+            {
+                "title": "发布字典",
+                "path": "/Publish/Dictionaries"
+            },
+            {
+                "title": "发布词条",
+                "path": "/Publish/Entry"
+            },
+            {
+                "title": "下架字典",
+                "path": "/Publish/OffDictionaries"
+            },
+            {
+                "title": "下架词条",
+                "path": "/Publish/OffEntry"
+            }
+        ]
+    },
+    {
+        "title": "意见反馈管理",
+        "children": [
+            {
+                "title": "意见清单",
+                "path": "/Options/List"
+            },
+            {
+                "title": "处理意见",
+                "path": "/Options/Handle"
+            },
+            {
+                "title": "删除意见",
+                "path": "/Options/Delete"
+            },
+            {
+                "title": "导出意见",
+                "path": "/Options/Import"
+            }
+        ]
+    }
+]
