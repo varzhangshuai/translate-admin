@@ -7,7 +7,6 @@ export function loginApi(data) {
   return request({
     url: '/login',
     method: 'post',
-    baseURL: '',
     data
   })
 }
@@ -17,7 +16,6 @@ export function getMenu(data) {
   return request({
     url: '/system/menu',
     method: 'get',
-    baseURL: '',
     data
   })
 }
@@ -30,7 +28,6 @@ export function addRole(data) {
   return request({
     url: '/role/add',
     method: 'post',
-    baseURL: '',
     data
   })
 }

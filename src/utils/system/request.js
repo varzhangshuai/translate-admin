@@ -1,11 +1,11 @@
 import axios from 'axios'
 import store from '@/store'
 import { ElMessage } from 'element-plus'
-const baseURL = import.meta.env.VITE_BASE_URL
-
+// const baseURL = import.meta.env.VITE_BASE_URL
+const baseURL =  process.env.NODE_ENV === 'development'? '/dev' : '/'
 const service = axios.create({
   baseURL: baseURL,
-  timeout: 5000
+  timeout: 10000
 })
 
 // 请求前的统一处理
@@ -14,6 +14,7 @@ service.interceptors.request.use(
     // JWT鉴权处理
     if (store.getters['user/token']) {
       config.headers['token'] = store.state.user.token
+      // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
     }
     return config
   },
@@ -55,5 +56,8 @@ function showError(error) {
   }
   
 }
+export const request = (url, data, method = 'GET') => service({
+  url, data, method
+})
 
 export default service

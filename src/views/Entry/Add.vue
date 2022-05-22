@@ -5,17 +5,22 @@
         <el-input v-model="form.title" placeholder="请输入原密码" show-password></el-input>
       </el-form-item>
 			<el-form-item label="词条释文" prop="new">
+			  <Editor :value="form.content"></Editor>
 			</el-form-item>
     </el-form>
   </div>
 </template>
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import Editor from '@/components/editor/index.vue'
 export default defineComponent({
+  components: {
+    Editor
+  },
   setup() {
     let form = ref({
       title: '',
-      content: ''
+      content: '123'
     })
     const rules = {
       old: [{ required: true, message: '请输入原密码', trigger: 'blur' }],

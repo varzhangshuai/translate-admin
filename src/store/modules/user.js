@@ -1,4 +1,4 @@
-import { loginApi, getInfoApi, loginOutApi } from '@/api/user'
+import { loginApi } from '@/api/index'
 
 const state = () => ({
   token: '', // 登录token
@@ -16,9 +16,6 @@ const getters = {
 const mutations = {
   tokenChange(state, token) {
     state.token = token
-  },
-  infoChange(state, info) {
-    state.info = info
   }
 }
 
@@ -28,40 +25,19 @@ const actions = {
   login({ commit, dispatch }, params) {
     return new Promise((resolve, reject) => {
       loginApi(params)
-      .then(res => {
-        commit('tokenChange', res.data.token)
-        dispatch('getInfo', { token: res.data.token })
-        .then(infoRes => {
-          resolve(res.data.token)
-        })
-      })
-    })
-  },
-  // get user info after user logined
-  getInfo({ commit }, params) {
-    return new Promise((resolve, reject) => {
-      getInfoApi(params)
-      .then(res => {
-        commit('infoChange', res.data.info)
-        resolve(res.data.info)
+        .then(res => {
+        commit('tokenChange', res.data)
+        resolve(res)
       })
     })
   },
 
   // login out the system after user click the loginOut button
   loginOut({ commit }) {
-    loginOutApi()
-    .then(res => {
-
-    })
-    .catch(error => {
-
-    })
-    .finally(() => {
-      localStorage.removeItem('tabs')
-      localStorage.removeItem('vuex')
-      location.reload()
-    })
+    commit('tokenChange', '')
+    localStorage.removeItem('tabs')
+    localStorage.removeItem('vuex')
+    location.reload()
   }
 }
 

@@ -14,8 +14,7 @@ import MenuBox from '@/components/menu/index.vue'
 import { createNameComponent } from './createNode'
 
 // 引入modules
-import Dashboard from './modules/dashboard'
-import Pages from './modules/pages'
+import menus from './modules/menus'
 import System from './modules/system'
 
 let modules = [
@@ -28,42 +27,28 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-let asyncRoutes = [
-  ...Dashboard,
-  ...Pages,
-]
+
+
 // 动态路由的权限新增，供登录后调用
 export function addRoutes() {
-  
-  // let data = [
-  //   {
-  //     path: '/echarts',
-  //     meta: { title: '权限管理', icon: 'el-icon-pie-chart' },
-  //     children: [
-  //       {
-  //         meta: { title: '菜单管理' },
-  //         component: 'index',
-  //         path: 'box456789'
-  //       },
-  //       {
-  //         meta: { title: '角色管理' },
-  //         component: 'index',
-  //         path: 'box1'
-  //       },
-  //       {
-  //         meta: { title: '用户管理' },
-  //         component: 'index',
-  //         path: 'box1456'
-  //       },
-  //     ]
-  //   },
-  // ]
-  // eachData(data, 0)
-  // data.forEach(item => {
-  //   modules.push(item)
-  //   router.addRoute(item)
-  // })
   // 与后端交互的逻辑处理，处理完后异步添加至页面
+  const data = JSON.parse(localStorage.getItem('routes')) || []
+  const first_menu = data.map(v => v.name)
+  const get_target_menu = name => (data.filter(v => v.name === name)[0] || [])
+  // .map(v => v.children).map(v => v.name)
+  const asyncRoutes = menus.filter((v) => {
+    if (first_menu.includes(v.meta.title)) {
+      v.children = v.children.filter(tv => {
+        const target_menu = get_target_menu(v.meta.title)
+        const target_list = target_menu.children.map(v => v.name)
+        if (target_list.includes(tv.meta.title)) {
+          return tv
+        }
+      })
+      return v
+    }
+  })
+  console.log('addRoutes=====>', asyncRoutes)
   asyncRoutes.forEach(item => {
     modules.push(item)
     router.addRoute(item)
@@ -96,6 +81,7 @@ const whiteList = ['/login']
 
 router.beforeEach((to, _from, next) => {
   NProgress.start();
+  console.log(store.state.user)
   if (store.state.user.token || whiteList.indexOf(to.path) !== -1) {
     to.meta.title ? (changeTitle(to.meta.title)) : ""; // 动态title
     next()

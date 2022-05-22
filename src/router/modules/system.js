@@ -2,6 +2,19 @@ import Layout from '@/layout/index.vue'
 import { createNameComponent } from '../createNode'
 const route = [
   {
+    path: '/',
+    component: Layout,
+    redirect: '/index',
+    meta: { title: '', icon: 'el-icon-menu' },
+    children: [
+      {
+        path: 'index',
+        component: createNameComponent(() => import('@/views/Index/index.vue')),
+        meta: { title: '首页', icon: 'el-icon-menu', show: true }
+      }
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     redirect: '/404',
@@ -37,6 +50,25 @@ const route = [
     component: Layout,
     redirect: "/404",
     hideMenu: true
+  },
+// 不在菜单内路由
+  {
+    path: '/',
+    component: Layout,
+    meta: { title: '', icon: 'el-icon-menu' },
+    hideMenu: true,
+    children: [
+      {
+        path: '/Worker/UserEdit',
+        component: createNameComponent(() => import('@/views/Worker/UserEdit.vue')),
+        meta: { title: '新增角色', show: true }
+      },
+      {
+        path: '/Worker/RoleAdd',
+        component: createNameComponent(() => import('@/views/Worker/RoleAdd.vue')),
+        meta: { title: '新增角色', show: true }
+      }
+    ]
   },
 ]
 

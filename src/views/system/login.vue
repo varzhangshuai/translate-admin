@@ -38,19 +38,20 @@
 
 <script>
 import { systemTitle } from '@/config'
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, ref, reactive, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter, useRoute } from 'vue-router'
 import { addRoutes } from '@/router'
 import { ElMessage } from 'element-plus'
+import {loginApi, getMenu} from '@/api/index'
 export default defineComponent({
   setup() {
     const store = useStore()
     const router = useRouter()
     const route = useRoute()
     const form = reactive({
-      name: 'admin',
-      password: '123456'
+      name: '13800138000',
+      password: '1234'
     })
     const passwordType = ref('password')
     const passwordTypeChange = () => {
@@ -78,24 +79,40 @@ export default defineComponent({
     const submit = () => {
       checkForm()
       .then(() => {
-        let params = {
-          name: form.name,
-          password: form.password
-        }
+        const params = new URLSearchParams();
+        params.append('token', form.name);
+        params.append('pwd', form.password);
         store.dispatch('user/login', params)
-        .then(() => {
+        .then((res) => {
+          if (res.data) {
           ElMessage.success({
             message: '登录成功',
             type: 'success',
             showClose: true,
             duration: 1000
           })
-          addRoutes()
-          router.push(route.query.redirect || '/')
+          getMenu().then(res => {
+            if (res.data) {
+              localStorage.setItem("routes",  JSON.stringify(res.data))
+            }
+            addRoutes()
+            router.push(route.query.redirect || '/')
+          })
+          return
+          }
+          ElMessage.error({
+            message: '登录失败',
+            showClose: true,
+            duration: 1000
+          })
+
         })
 
       })
     }
+    onMounted(() => {
+      // addRoutes()
+    })
     return {
       systemTitle,
       form,
